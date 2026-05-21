@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="dark"><script>try{var t=localStorage.getItem("vj_theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -18,24 +18,42 @@
 <style>
 /* ═══ CSS VARIABLES ═══ */
 :root{
-  --p:#2e8b57;--pl:#3cb371;--pd:#1a5c38;--sec:#20b2aa;
-  --gold:#ffd700;--bg:#070f0b;--bg2:#0c1a11;--bg3:#111f16;--bg4:#172b1e;
-  --card:#0e1e14ee;
-  --txt:#f5f2ec;      /* brighter white-warm — was #f0ede6 */
-  --txt2:#d8d0b8;     /* brighter secondary text — was #c8c0a8 */
-  --txt3:#aabcaa;     /* brighter muted text — was #8a9e8e */
+  /* Brand */
+  --p:#2e8b57;--pl:#3cb371;--pd:#1a5c38;--sec:#20b2aa;--gold:#ffd700;
+  /* Backgrounds */
+  --bg:#070f0b;--bg2:#0c1a11;--bg3:#111f16;--bg4:#172b1e;--card:#0e1e14ee;
+  /* Text */
+  --txt:#f5f2ec;--txt2:#d8d0b8;--txt3:#aabcaa;
+  /* Borders & Glass */
   --bdr:#1e3528;--bdr2:#2e8b5755;--glass:rgba(11,24,16,0.88);
+  /* Nav */
+  --nav-bg:rgba(11,24,16,0.88);--nav-border:#2e8b5755;
+  /* Buttons */
+  --btn-text:#ffffff;
+  /* Hero */
+  --hero-overlay:rgba(7,15,11,0.45);
+  /* Footer */
+  --footer-bg:#030a05;--footer-text:#aabcaa;
+  /* Cursor & FX */
+  --cursor-color:#ffd700;--shadow-color:rgba(0,0,0,0.4);--sparkle:#ffd700;
+  /* Rate up/dn */
+  --up-bg:#0f3320;--up-text:#4cdf8a;--dn-bg:#3a1010;--dn-text:#f07070;
+  /* Misc */
   --r:16px;--rs:8px;--shadow:0 8px 40px #00000066;
   --tr:all 0.35s cubic-bezier(0.4,0,0.2,1);
   --fd:'Playfair Display',serif;--fh:'Cinzel',serif;--fb:'DM Sans',sans-serif;
 }
 [data-theme="light"]{
-  --bg:#f5f0e8;--bg2:#ede8dc;--bg3:#e4ddce;--bg4:#d9d0be;
-  --card:#ffffffee;
-  --txt:#0f0a04;      /* deeper black for max contrast */
-  --txt2:#2a1e0e;     /* dark brown */
-  --txt3:#4a3a20;     /* medium brown — was too light #6b5e48 */
+  --p:#2e8b57;--pl:#3cb371;--pd:#1a5c38;--sec:#20b2aa;--gold:#b8860b;
+  --bg:#f5f0e8;--bg2:#ede8dc;--bg3:#e4ddce;--bg4:#d9d0be;--card:#ffffffee;
+  --txt:#0f0a04;--txt2:#2a1e0e;--txt3:#4a3a20;
   --bdr:#c8bda0;--bdr2:#2e8b5744;--glass:rgba(245,240,232,0.92);
+  --nav-bg:rgba(245,240,232,0.92);--nav-border:#c8bda088;
+  --btn-text:#ffffff;
+  --hero-overlay:rgba(245,240,232,0.2);
+  --footer-bg:#d9d0be;--footer-text:#4a3a20;
+  --cursor-color:#b8860b;--shadow-color:rgba(0,0,0,0.12);--sparkle:#b8860b;
+  --up-bg:#d4edda;--up-text:#155724;--dn-bg:#f8d7da;--dn-text:#721c24;
   --shadow:0 8px 40px #00000022;
 }
 /* ═══ RESET ═══ */
@@ -49,8 +67,8 @@ select option{background:var(--bg2)}
 @media(hover:none){body{cursor:auto}#CUR,#CUR2{display:none}}
 
 /* ═══ CUSTOM CURSOR    ═══ */
-#CUR{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s;top:0;left:0}
-#CUR2{position:fixed;width:32px;height:32px;border:1.5px solid var(--gold);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);opacity:.5;top:0;left:0;transition:left .12s,top .12s}
+#CUR{position:fixed;width:10px;height:10px;background:var(--cursor-color);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s;top:0;left:0}
+#CUR2{position:fixed;width:32px;height:32px;border:1.5px solid var(--cursor-color);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);opacity:.5;top:0;left:0;transition:left .12s,top .12s}
 .spk{position:fixed;pointer-events:none;z-index:99997;border-radius:50%;animation:spkfade .65s ease-out forwards}
 @keyframes spkfade{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-60px) scale(0)}}
 
@@ -81,8 +99,8 @@ select option{background:var(--bg2)}
 .ri .lbl{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--ratebar-label)}
 .ri .val{font-family:var(--fh);font-size:13px;font-weight:700;color:var(--gold)}
 .ri .chg{font-size:13px;padding:1px 5px;border-radius:4px}
-.up{background:#0f3320;color:#4cdf8a}
-.dn{background:#3a1010;color:#f07070}
+.up{background:var(--up-bg);color:var(--up-text)}
+.dn{background:var(--dn-bg);color:var(--dn-text)}
 .rdiv{color:var(--ratebar-border);padding:0 2px;font-size:14px}
 
 /* ═══ NAVBAR ═══ */
@@ -440,6 +458,13 @@ footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:clamp(30px,
 .clr-inp::-webkit-color-swatch{border:none;border-radius:6px}
 .clr-label{font-size:11px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.2}
 .clr-hint{font-size:9px;color:var(--txt3);text-align:center;line-height:1.2}
+/* Preset grid */
+.preset-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;margin-bottom:8px}
+.preset-btn{display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--bdr);border-radius:10px;background:var(--bg3);color:var(--txt2);cursor:pointer;font-size:11px;font-weight:600;transition:all .2s;text-align:left}
+.preset-btn:hover{border-color:var(--gold);color:var(--txt);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,.2)}
+.pb-swatch{width:26px;height:26px;border-radius:6px;flex-shrink:0;border:1px solid rgba(255,255,255,.1)}
+.ptab{transition:all .2s}
+.ptab.act{background:var(--p)!important;color:#fff!important}
 
 /* ═══ ADMIN ═══ */
 #ADMIN{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.95);backdrop-filter:blur(18px);display:none;overflow-y:auto}
@@ -1107,18 +1132,118 @@ footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:clamp(30px,
             </div>
           </div>
 
-          <!-- PRESETS -->
-          <div style="margin:18px 0 8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Quick Presets</div>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
-            <button class="baP" style="font-size:11px;padding:6px 14px" onclick="applyPreset('dark')">🌑 Dark Green (Default)</button>
-            <button class="baP" style="font-size:11px;padding:6px 14px;background:#1a237e" onclick="applyPreset('royal')">💙 Royal Blue</button>
-            <button class="baP" style="font-size:11px;padding:6px 14px;background:#4a0000" onclick="applyPreset('maroon')">❤️ Deep Maroon</button>
-            <button class="baP" style="font-size:11px;padding:6px 14px;background:#3e2723" onclick="applyPreset('bronze')">🟤 Bronze Dark</button>
-            <button class="baP" style="font-size:11px;padding:6px 14px;background:#1b1b1b;color:#ffd700" onclick="applyPreset('luxury')">✨ Black Gold</button>
+          <!-- EXTRA COLORS -->
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Navbar Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_navBg" class="clr-inp" oninput="liveColor('--nav-bg',this.value)">
+              <div class="clr-label">Navbar BG</div>
+              <div class="clr-hint">(top nav bg)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_navBorder" class="clr-inp" oninput="liveColor('--nav-border',this.value)">
+              <div class="clr-label">Navbar Border</div>
+              <div class="clr-hint">(nav underline)</div>
+            </div>
           </div>
 
-          <button class="baP" onclick="saveSite()" style="padding:12px 28px;font-size:13px">💾 Save All Colors &amp; Settings</button>
-          <button class="baP" style="background:var(--bg3);color:var(--txt3);margin-left:8px;padding:12px 20px;font-size:13px" onclick="resetColors()">↩ Reset to Default</button>
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ UI Element Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_btnText" class="clr-inp" oninput="liveColor('--btn-text',this.value)">
+              <div class="clr-label">Button Text</div>
+              <div class="clr-hint">(text on buttons)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_heroOverlay" class="clr-inp" oninput="liveColor('--hero-overlay',this.value)">
+              <div class="clr-label">Hero Overlay</div>
+              <div class="clr-hint">(hero tint)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_footerBg" class="clr-inp" oninput="liveColor('--footer-bg',this.value)">
+              <div class="clr-label">Footer BG</div>
+              <div class="clr-hint">(footer section)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_footerText" class="clr-inp" oninput="liveColor('--footer-text',this.value)">
+              <div class="clr-label">Footer Text</div>
+              <div class="clr-hint">(footer links)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_cursorColor" class="clr-inp" oninput="liveColor('--cursor-color',this.value)">
+              <div class="clr-label">Cursor Color</div>
+              <div class="clr-hint">(custom cursor)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_sparkle" class="clr-inp" oninput="liveColor('--sparkle',this.value)">
+              <div class="clr-label">Sparkle / FX</div>
+              <div class="clr-hint">(click effect)</div>
+            </div>
+          </div>
+
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Rate Change Indicators</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_upBg" class="clr-inp" oninput="liveColor('--up-bg',this.value)">
+              <div class="clr-label">Up Badge BG</div>
+              <div class="clr-hint">(rate up bg)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_upText" class="clr-inp" oninput="liveColor('--up-text',this.value)">
+              <div class="clr-label">Up Badge Text</div>
+              <div class="clr-hint">(rate up text)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_dnBg" class="clr-inp" oninput="liveColor('--dn-bg',this.value)">
+              <div class="clr-label">Down Badge BG</div>
+              <div class="clr-hint">(rate down bg)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_dnText" class="clr-inp" oninput="liveColor('--dn-text',this.value)">
+              <div class="clr-label">Down Badge Text</div>
+              <div class="clr-hint">(rate down text)</div>
+            </div>
+          </div>
+
+          <!-- PRESETS SECTION -->
+          <div style="margin:22px 0 10px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Theme Presets</div>
+          <div style="display:flex;gap:0;margin-bottom:14px;border:1px solid var(--bdr);border-radius:10px;overflow:hidden;width:fit-content">
+            <button id="PTAB_dark" class="baP ptab act" style="border-radius:0;padding:7px 20px;font-size:12px" onclick="switchPresetTab('dark')">🌑 Dark Themes</button>
+            <button id="PTAB_light" class="baP ptab" style="border-radius:0;padding:7px 20px;font-size:12px;background:var(--bg3);color:var(--txt3)" onclick="switchPresetTab('light')">☀️ Light Themes</button>
+          </div>
+
+          <!-- DARK PRESETS -->
+          <div id="PRESETS_dark" class="preset-grid">
+            <button class="preset-btn" style="--pb:#2e8b57;--pt:#070f0b" onclick="applyPreset('darkGreen','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#070f0b 50%,#2e8b57 50%)"></span><span>🌿 Forest Night</span></button>
+            <button class="preset-btn" style="--pb:#3949ab;--pt:#07090f" onclick="applyPreset('royalBlue','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#07090f 50%,#3949ab 50%)"></span><span>💙 Royal Night</span></button>
+            <button class="preset-btn" style="--pb:#8b1a1a;--pt:#0f0707" onclick="applyPreset('deepMaroon','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#0f0707 50%,#8b1a1a 50%)"></span><span>❤️ Deep Maroon</span></button>
+            <button class="preset-btn" style="--pb:#a0522d;--pt:#0f0a07" onclick="applyPreset('bronzeDark','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#0f0a07 50%,#a0522d 50%)"></span><span>🟤 Bronze Dark</span></button>
+            <button class="preset-btn" style="--pb:#ffd700;--pt:#0a0a0a" onclick="applyPreset('blackGold','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#0a0a0a 50%,#b8960c 50%)"></span><span>✨ Black Gold</span></button>
+            <button class="preset-btn" style="--pb:#9c27b0;--pt:#0a070f" onclick="applyPreset('royalPurple','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#0a070f 50%,#9c27b0 50%)"></span><span>💜 Royal Purple</span></button>
+            <button class="preset-btn" style="--pb:#00897b;--pt:#070f0e" onclick="applyPreset('deepTeal','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#070f0e 50%,#00897b 50%)"></span><span>🌊 Deep Teal</span></button>
+            <button class="preset-btn" style="--pb:#e65100;--pt:#0f0903" onclick="applyPreset('burntOrange','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#0f0903 50%,#e65100 50%)"></span><span>🔥 Burnt Orange</span></button>
+            <button class="preset-btn" style="--pb:#ad1457;--pt:#0f0709" onclick="applyPreset('roseGold','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#0f0709 50%,#ad1457 50%)"></span><span>🌹 Rose Gold Dark</span></button>
+            <button class="preset-btn" style="--pb:#37474f;--pt:#070a0b" onclick="applyPreset('slateNight','dark')"><span class="pb-swatch" style="background:linear-gradient(135deg,#070a0b 50%,#37474f 50%)"></span><span>🩶 Slate Night</span></button>
+          </div>
+
+          <!-- LIGHT PRESETS -->
+          <div id="PRESETS_light" class="preset-grid" style="display:none">
+            <button class="preset-btn" style="--pb:#2e8b57;--pt:#f5f0e8" onclick="applyPreset('creamGreen','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#f5f0e8 50%,#2e8b57 50%)"></span><span>🌿 Cream Green</span></button>
+            <button class="preset-btn" style="--pb:#1565c0;--pt:#f0f4ff" onclick="applyPreset('skyBlue','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#f0f4ff 50%,#1565c0 50%)"></span><span>☁️ Sky Blue</span></button>
+            <button class="preset-btn" style="--pb:#c62828;--pt:#fff5f5" onclick="applyPreset('roseLight','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#fff5f5 50%,#c62828 50%)"></span><span>🌸 Rose Light</span></button>
+            <button class="preset-btn" style="--pb:#6a1e00;--pt:#fdf3e7" onclick="applyPreset('warmBronze','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#fdf3e7 50%,#6a1e00 50%)"></span><span>🟤 Warm Bronze</span></button>
+            <button class="preset-btn" style="--pb:#b8860b;--pt:#fffff0" onclick="applyPreset('ivoryGold','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#fffff0 50%,#b8860b 50%)"></span><span>🏅 Ivory Gold</span></button>
+            <button class="preset-btn" style="--pb:#6a1b9a;--pt:#faf0ff" onclick="applyPreset('lavender','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#faf0ff 50%,#6a1b9a 50%)"></span><span>💜 Lavender</span></button>
+            <button class="preset-btn" style="--pb:#00695c;--pt:#f0fffe" onclick="applyPreset('mintFresh','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#f0fffe 50%,#00695c 50%)"></span><span>🌱 Mint Fresh</span></button>
+            <button class="preset-btn" style="--pb:#bf360c;--pt:#fff8f5" onclick="applyPreset('terracotta','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#fff8f5 50%,#bf360c 50%)"></span><span>🏺 Terracotta</span></button>
+            <button class="preset-btn" style="--pb:#880e4f;--pt:#fff0f5" onclick="applyPreset('blossomPink','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#fff0f5 50%,#880e4f 50%)"></span><span>🌺 Blossom Pink</span></button>
+            <button class="preset-btn" style="--pb:#33691e;--pt:#f4fbf0" onclick="applyPreset('pureNature','light')"><span class="pb-swatch" style="background:linear-gradient(135deg,#f4fbf0 50%,#33691e 50%)"></span><span>🍃 Pure Nature</span></button>
+          </div>
+
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:18px">
+            <button class="baP" onclick="saveSite()" style="padding:12px 28px;font-size:13px">💾 Save All Colors &amp; Settings</button>
+            <button class="baP" style="background:var(--bg3);color:var(--txt3);padding:12px 20px;font-size:13px" onclick="resetColors()">↩ Reset Default</button>
+          </div>
         </div>
         <div class="ac">
           <h3>📞 Contact Details</h3>
@@ -1254,30 +1379,26 @@ function applySettings(s){
   if(!s) return;
   S.settings = s;
   const r = document.documentElement;
-  // Legacy 3-color fields
-  if(s.primaryColor) r.style.setProperty('--p', s.primaryColor);
-  if(s.secondaryColor) r.style.setProperty('--sec', s.secondaryColor);
-  if(s.accentColor) r.style.setProperty('--gold', s.accentColor);
-  // Full color palette
-  if(s.colors){
-    const c = s.colors;
-    const varMap = {
-      p:'--p',pl:'--pl',pd:'--pd',sec:'--sec',gold:'--gold',
-      bg:'--bg',bg2:'--bg2',bg3:'--bg3',bg4:'--bg4',
-      card:'--card',txt:'--txt',txt2:'--txt2',txt3:'--txt3',
-      bdr:'--bdr',bdr2:'--bdr2',glass:'--glass',
-      ratebarBg:'--ratebar-bg',ratebarBorder:'--ratebar-border',
-      ratebarText:'--ratebar-text',ratebarLabel:'--ratebar-label'
-    };
-    Object.entries(varMap).forEach(([k,v])=>{
-      if(c[k]) r.style.setProperty(v, c[k]);
+  // Restore saved theme from localStorage
+  const savedTheme = (() => { try{ return localStorage.getItem('vj_theme'); }catch(e){ return null; } })();
+  if(savedTheme) r.setAttribute('data-theme', savedTheme);
+  const currentTheme = r.getAttribute('data-theme') || 'dark';
+  // Apply per-theme colors if available, else fall back to generic colors
+  const themeColors = s.themeColors?.[currentTheme] || s.colors || null;
+  if(themeColors){
+    Object.entries(ALL_VAR_MAP).forEach(([k,v])=>{
+      if(themeColors[k]) r.style.setProperty(v, themeColors[k]);
     });
-    // Apply ratebar inline too (overrides any inline styles)
     const rb = document.getElementById('RATEBAR');
     if(rb){
-      if(c.ratebarBg) rb.style.background = c.ratebarBg;
-      if(c.ratebarBorder) rb.style.borderBottomColor = c.ratebarBorder;
+      if(themeColors.ratebarBg) rb.style.background = themeColors.ratebarBg;
+      if(themeColors.ratebarBorder) rb.style.borderBottomColor = themeColors.ratebarBorder;
     }
+  } else {
+    // Legacy 3-color fields only
+    if(s.primaryColor) r.style.setProperty('--p', s.primaryColor);
+    if(s.secondaryColor) r.style.setProperty('--sec', s.secondaryColor);
+    if(s.accentColor) r.style.setProperty('--gold', s.accentColor);
   }
   if(s.heroImages && s.heroImages.length) S.heroImages = s.heroImages;
   if(s.galleryImages && s.galleryImages.length) S.galleryImages = s.galleryImages;
@@ -1813,7 +1934,48 @@ window.goPage = function(page){
 };
 window.toggleMMenu = function(){ document.getElementById('MMENU').classList.toggle('open'); document.body.style.overflow=document.getElementById('MMENU').classList.contains('open')?'hidden':''; };
 window.closeMMenu = function(){ document.getElementById('MMENU').classList.remove('open'); document.body.style.overflow=''; };
-window.toggleTheme = function(){ document.documentElement.setAttribute('data-theme',document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark'); };
+window.toggleTheme = function(){
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  // Remove all custom inline CSS var overrides so the CSS [data-theme] block takes effect
+  const allVars = ['--p','--pl','--pd','--sec','--gold','--bg','--bg2','--bg3','--bg4',
+    '--card','--txt','--txt2','--txt3','--bdr','--bdr2','--glass',
+    '--ratebar-bg','--ratebar-border','--ratebar-text','--ratebar-label',
+    '--nav-bg','--nav-border','--btn-text','--hero-overlay',
+    '--footer-bg','--footer-text','--cursor-color','--shadow-color',
+    '--up-bg','--up-text','--dn-bg','--dn-text','--sparkle'];
+  allVars.forEach(v => html.style.removeProperty(v));
+  // Remove ratebar inline style overrides
+  const rb = document.getElementById('RATEBAR');
+  if(rb){ rb.style.removeProperty('background'); rb.style.removeProperty('border-bottom-color'); }
+  // Now re-apply saved colors for this theme if any exist
+  const themeColors = S.settings?.themeColors?.[newTheme];
+  if(themeColors){
+    const varMap = {
+      p:'--p',pl:'--pl',pd:'--pd',sec:'--sec',gold:'--gold',
+      bg:'--bg',bg2:'--bg2',bg3:'--bg3',bg4:'--bg4',card:'--card',
+      txt:'--txt',txt2:'--txt2',txt3:'--txt3',
+      bdr:'--bdr',bdr2:'--bdr2',glass:'--glass',
+      ratebarBg:'--ratebar-bg',ratebarBorder:'--ratebar-border',
+      ratebarText:'--ratebar-text',ratebarLabel:'--ratebar-label',
+      navBg:'--nav-bg',navBorder:'--nav-border',btnText:'--btn-text',
+      heroOverlay:'--hero-overlay',footerBg:'--footer-bg',footerText:'--footer-text',
+      cursorColor:'--cursor-color',shadowColor:'--shadow-color',
+      upBg:'--up-bg',upText:'--up-text',dnBg:'--dn-bg',dnText:'--dn-text',sparkle:'--sparkle'
+    };
+    Object.entries(varMap).forEach(([k,v])=>{
+      if(themeColors[k]) html.style.setProperty(v, themeColors[k]);
+    });
+    if(rb && themeColors.ratebarBg){ rb.style.background = themeColors.ratebarBg; }
+    if(rb && themeColors.ratebarBorder){ rb.style.borderBottomColor = themeColors.ratebarBorder; }
+  }
+  // Update admin color pickers if admin is open
+  if(S.adminIn) populateColorPickers(newTheme);
+  // Persist theme choice
+  try{ localStorage.setItem('vj_theme', newTheme); }catch(e){}
+};
 
 /* ══ STATS COUNTER ══ */
 function animateStats(){
@@ -1915,38 +2077,57 @@ function populateAdmin(){
   document.getElementById('ASTAGLINE').value=S.settings?.tagline||'';
   const creds=S.settings?.adminCredentials||{};
   document.getElementById('ANEWU').value=creds.username||'admin';
-  // Populate color inputs — prefer saved colors, fallback to computed CSS vars
-  const saved = S.settings?.colors || {};
-  const cs = getComputedStyle(document.documentElement);
-  const getC = (key, cssVar, fallback) => {
-    if(saved[key]) return saved[key];
-    const cv = cs.getPropertyValue(cssVar).trim();
-    return cv || fallback;
-  };
-  const colorMap = [
-    ['p','--p','#2e8b57'],['pl','--pl','#3cb371'],['pd','--pd','#1a5c38'],
-    ['sec','--sec','#20b2aa'],['gold','--gold','#ffd700'],
-    ['bg','--bg','#070f0b'],['bg2','--bg2','#0c1a11'],
-    ['bg3','--bg3','#111f16'],['bg4','--bg4','#172b1e'],
-    ['card','--card','#0e1e14'],
-    ['txt','--txt','#f5f2ec'],['txt2','--txt2','#d8d0b8'],['txt3','--txt3','#aabcaa'],
-    ['bdr','--bdr','#1e3528'],['bdr2','--bdr2','#2e8b5755'],
-    ['glass','--glass','#0b1810'],
-    ['ratebarBg','--ratebar-bg','#5c0a1a'],
-    ['ratebarBorder','--ratebar-border','#8b1a2e'],
-    ['ratebarText','--ratebar-text','#e8c5cc'],
-    ['ratebarLabel','--ratebar-label','#c9a0aa']
-  ];
-  colorMap.forEach(([k, cssVar, fallback])=>{
-    const el = document.getElementById('AC_'+k);
-    if(el){
-      let val = getC(k, cssVar, fallback);
-      // Convert rgba/named to hex for color input
-      val = toHex(val) || fallback;
-      el.value = val;
-    }
-  });
+  populateColorPickers();
   renderAdminProducts(); renderAdminOffers(); renderAdminHeroImgs(); renderAdminGalImgs(); renderAdminOfferImgs();
+}
+
+// Populate all color pickers from current CSS computed values
+function populateColorPickers(theme){
+  const cs = getComputedStyle(document.documentElement);
+  const colorDefs = [
+    // [inputId, cssVar, darkFallback, lightFallback]
+    ['AC_p','--p','#2e8b57','#2e8b57'],
+    ['AC_pl','--pl','#3cb371','#3cb371'],
+    ['AC_pd','--pd','#1a5c38','#1a5c38'],
+    ['AC_sec','--sec','#20b2aa','#20b2aa'],
+    ['AC_gold','--gold','#ffd700','#b8860b'],
+    ['AC_bg','--bg','#070f0b','#f5f0e8'],
+    ['AC_bg2','--bg2','#0c1a11','#ede8dc'],
+    ['AC_bg3','--bg3','#111f16','#e4ddce'],
+    ['AC_bg4','--bg4','#172b1e','#d9d0be'],
+    ['AC_card','--card','#0e1e14','#ffffff'],
+    ['AC_txt','--txt','#f5f2ec','#0f0a04'],
+    ['AC_txt2','--txt2','#d8d0b8','#2a1e0e'],
+    ['AC_txt3','--txt3','#aabcaa','#4a3a20'],
+    ['AC_bdr','--bdr','#1e3528','#c8bda0'],
+    ['AC_bdr2','--bdr2','#2e8b57','#2e8b57'],
+    ['AC_glass','--glass','#0b1810','#f5f0e8'],
+    ['AC_ratebarBg','--ratebar-bg','#5c0a1a','#5c0a1a'],
+    ['AC_ratebarBorder','--ratebar-border','#8b1a2e','#8b1a2e'],
+    ['AC_ratebarText','--ratebar-text','#e8c5cc','#e8c5cc'],
+    ['AC_ratebarLabel','--ratebar-label','#c9a0aa','#c9a0aa'],
+    ['AC_navBg','--nav-bg','#0b1810','#f5f0e8'],
+    ['AC_navBorder','--nav-border','#2e8b57','#c8bda0'],
+    ['AC_btnText','--btn-text','#ffffff','#ffffff'],
+    ['AC_heroOverlay','--hero-overlay','#070f0b','#f5f0e8'],
+    ['AC_footerBg','--footer-bg','#030a05','#d9d0be'],
+    ['AC_footerText','--footer-text','#aabcaa','#4a3a20'],
+    ['AC_cursorColor','--cursor-color','#ffd700','#b8860b'],
+    ['AC_sparkle','--sparkle','#ffd700','#b8860b'],
+    ['AC_upBg','--up-bg','#0f3320','#d4edda'],
+    ['AC_upText','--up-text','#4cdf8a','#155724'],
+    ['AC_dnBg','--dn-bg','#3a1010','#f8d7da'],
+    ['AC_dnText','--dn-text','#f07070','#721c24'],
+  ];
+  const isDark = (theme || document.documentElement.getAttribute('data-theme')) !== 'light';
+  colorDefs.forEach(([id, cssVar, darkFb, lightFb])=>{
+    const el = document.getElementById(id);
+    if(!el) return;
+    let val = cs.getPropertyValue(cssVar).trim();
+    if(!val) val = isDark ? darkFb : lightFb;
+    const hex = toHex(val);
+    if(hex) el.value = hex;
+  });
 }
 
 // Helper: convert any css color to #rrggbb for <input type="color">
@@ -2003,37 +2184,36 @@ window.updateRates = async function(){
 
 /* ── SAVE SITE ── */
 window.saveSite = async function(){
-  // Collect all color inputs
-  const colorKeys = ['p','pl','pd','sec','gold','bg','bg2','bg3','bg4',
-                     'card','txt','txt2','txt3','bdr','bdr2','glass',
-                     'ratebarBg','ratebarBorder','ratebarText','ratebarLabel'];
+  // Collect ALL color inputs from the editor
+  const allColorKeys = ['p','pl','pd','sec','gold','bg','bg2','bg3','bg4','card',
+    'txt','txt2','txt3','bdr','bdr2','glass',
+    'ratebarBg','ratebarBorder','ratebarText','ratebarLabel',
+    'navBg','navBorder','btnText','heroOverlay','footerBg','footerText',
+    'cursorColor','sparkle','upBg','upText','dnBg','dnText'];
   const colors = {};
-  colorKeys.forEach(k => {
+  allColorKeys.forEach(k => {
     const el = document.getElementById('AC_'+k);
     if(el) colors[k] = el.value;
   });
-  // Apply immediately to page
-  const varMap = {
-    p:'--p', pl:'--pl', pd:'--pd', sec:'--sec', gold:'--gold',
-    bg:'--bg', bg2:'--bg2', bg3:'--bg3', bg4:'--bg4',
-    card:'--card', txt:'--txt', txt2:'--txt2', txt3:'--txt3',
-    bdr:'--bdr', bdr2:'--bdr2', glass:'--glass',
-    ratebarBg:'--ratebar-bg', ratebarBorder:'--ratebar-border',
-    ratebarText:'--ratebar-text', ratebarLabel:'--ratebar-label'
-  };
-  Object.entries(colors).forEach(([k,v])=>{
-    if(varMap[k]) document.documentElement.style.setProperty(varMap[k], v);
+  // Apply all to page immediately
+  Object.entries(ALL_VAR_MAP).forEach(([k,v])=>{
+    if(colors[k]) document.documentElement.style.setProperty(v, colors[k]);
   });
-  // Also apply ratebar inline styles
+  // Apply ratebar inline
   const rb = document.getElementById('RATEBAR');
-  if(rb && colors.ratebarBg){
-    rb.style.background = colors.ratebarBg;
-    rb.style.borderBottomColor = colors.ratebarBorder||'';
+  if(rb){
+    if(colors.ratebarBg) rb.style.background = colors.ratebarBg;
+    if(colors.ratebarBorder) rb.style.borderBottomColor = colors.ratebarBorder;
   }
-  // Legacy fields for backward compat
+  // Save per-theme colors
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const themeColors = S.settings?.themeColors || {};
+  themeColors[currentTheme] = colors;
+  // Build settings object
   const ns={...S.settings,
     primaryColor:colors.p, secondaryColor:colors.sec, accentColor:colors.gold,
     colors: colors,
+    themeColors: themeColors,
     siteName:document.getElementById('ASNAME').value,
     tagline:document.getElementById('ASTAGLINE').value,
     heroImages:S.heroImages, galleryImages:S.galleryImages, offerImages:S.offerImages,
@@ -2042,7 +2222,7 @@ window.saveSite = async function(){
     liveRates:{gold24k:S.rates.gold24k,gold22k:S.rates.gold22k,gold18k:S.rates.gold18k,silver:S.rates.silver}
   };
   S.settings=ns;
-  try{ await set(ref(db,'settings'),ns); initHero(); toast('✓ All colors & settings saved!','ok'); }
+  try{ await set(ref(db,'settings'),ns); initHero(); toast('✓ Colors saved for '+currentTheme+' theme!','ok'); }
   catch(err){ toast('Local save OK — Firebase: '+err.message,'err'); }
 };
 
@@ -2224,60 +2404,67 @@ window.liveRateBar = function(){
 };
 
 /* ── COLOR PRESETS ── */
+function mkC(p,pl,pd,sec,gold,bg,bg2,bg3,bg4,card,txt,txt2,txt3,bdr,bdr2,glass,rBg,rBdr,rTxt,rLbl,navBg,btnTxt,hero,ftBg,ftTxt,cur,up_bg,up_txt,dn_bg,dn_txt,spk){
+  return {p,pl,pd,sec,gold,bg,bg2,bg3,bg4,card,txt,txt2,txt3,bdr,bdr2,glass,
+    ratebarBg:rBg,ratebarBorder:rBdr,ratebarText:rTxt,ratebarLabel:rLbl,
+    navBg:navBg||glass,navBorder:bdr2,btnText:btnTxt||'#ffffff',heroOverlay:hero||bg+'88',
+    footerBg:ftBg||bg,footerText:ftTxt||txt3,
+    cursorColor:cur||gold,sparkle:spk||gold,
+    upBg:up_bg||'#0f3320',upText:up_txt||'#4cdf8a',dnBg:dn_bg||'#3a1010',dnText:dn_txt||'#f07070'
+  };
+}
 const COLOR_PRESETS = {
-  dark:{
-    p:'#2e8b57',pl:'#3cb371',pd:'#1a5c38',sec:'#20b2aa',gold:'#ffd700',
-    bg:'#070f0b',bg2:'#0c1a11',bg3:'#111f16',bg4:'#172b1e',
-    card:'#0e1e14',txt:'#f5f2ec',txt2:'#d8d0b8',txt3:'#aabcaa',
-    bdr:'#1e3528',bdr2:'#2e8b57',glass:'#0b1810',
-    ratebarBg:'#5c0a1a',ratebarBorder:'#8b1a2e',ratebarText:'#e8c5cc',ratebarLabel:'#c9a0aa'
-  },
-  royal:{
-    p:'#3949ab',pl:'#5c6bc0',pd:'#1a237e',sec:'#00bcd4',gold:'#ffd700',
-    bg:'#07090f',bg2:'#0c0f1a',bg3:'#111520',bg4:'#171c2b',
-    card:'#0e1120',txt:'#f0f0ff',txt2:'#c8cce8',txt3:'#8890bb',
-    bdr:'#1e2456',bdr2:'#3949ab',glass:'#0b0e1c',
-    ratebarBg:'#1a237e',ratebarBorder:'#3949ab',ratebarText:'#c5ccff',ratebarLabel:'#a0aacc'
-  },
-  maroon:{
-    p:'#8b1a1a',pl:'#b22222',pd:'#4a0000',sec:'#c0392b',gold:'#ffd700',
-    bg:'#0f0707',bg2:'#1a0c0c',bg3:'#200f0f',bg4:'#2b1414',
-    card:'#1a0e0e',txt:'#fff0f0',txt2:'#e8c8c8',txt3:'#bb8888',
-    bdr:'#3a1010',bdr2:'#8b1a1a',glass:'#150808',
-    ratebarBg:'#2d0000',ratebarBorder:'#6b0000',ratebarText:'#ffcccc',ratebarLabel:'#cc9999'
-  },
-  bronze:{
-    p:'#a0522d',pl:'#cd853f',pd:'#6b3621',sec:'#d2691e',gold:'#ffd700',
-    bg:'#0f0a07',bg2:'#1a1108',bg3:'#20160a',bg4:'#2b1e0e',
-    card:'#1a1208',txt:'#fff8f0',txt2:'#e8d8c0',txt3:'#bb9870',
-    bdr:'#3a2010',bdr2:'#a0522d',glass:'#150e06',
-    ratebarBg:'#3e2000',ratebarBorder:'#7a4000',ratebarText:'#ffddb5',ratebarLabel:'#ccaa80'
-  },
-  luxury:{
-    p:'#b8960c',pl:'#d4af37',pd:'#7a6000',sec:'#c0a000',gold:'#ffd700',
-    bg:'#0a0a0a',bg2:'#111111',bg3:'#1a1a1a',bg4:'#222222',
-    card:'#141414',txt:'#f5f5f0',txt2:'#d8d5c8',txt3:'#aaa898',
-    bdr:'#2a2a2a',bdr2:'#b8960c',glass:'#0d0d0d',
-    ratebarBg:'#1a1200',ratebarBorder:'#4a3800',ratebarText:'#ffeea0',ratebarLabel:'#ccb840'
-  }
+  // ═══ DARK THEMES ═══
+  darkGreen:  mkC('#2e8b57','#3cb371','#1a5c38','#20b2aa','#ffd700','#070f0b','#0c1a11','#111f16','#172b1e','#0e1e14','#f5f2ec','#d8d0b8','#aabcaa','#1e3528','#2e8b57','rgba(11,24,16,0.88)','#5c0a1a','#8b1a2e','#e8c5cc','#c9a0aa'),
+  royalBlue:  mkC('#3949ab','#5c6bc0','#1a237e','#00bcd4','#ffd700','#07090f','#0c0f1a','#111520','#171c2b','#0e1120','#f0f0ff','#c8cce8','#8890bb','#1e2456','#3949ab','rgba(11,14,28,0.88)','#1a237e','#3949ab','#c5ccff','#a0aacc'),
+  deepMaroon: mkC('#8b1a1a','#b22222','#4a0000','#c0392b','#ffd700','#0f0707','#1a0c0c','#200f0f','#2b1414','#1a0e0e','#fff0f0','#e8c8c8','#bb8888','#3a1010','#8b1a1a','rgba(21,8,8,0.88)','#2d0000','#6b0000','#ffcccc','#cc9999'),
+  bronzeDark: mkC('#a0522d','#cd853f','#6b3621','#d2691e','#ffd700','#0f0a07','#1a1108','#20160a','#2b1e0e','#1a1208','#fff8f0','#e8d8c0','#bb9870','#3a2010','#a0522d','rgba(21,14,6,0.88)','#3e2000','#7a4000','#ffddb5','#ccaa80'),
+  blackGold:  mkC('#b8960c','#d4af37','#7a6000','#c0a000','#ffd700','#0a0a0a','#111111','#1a1a1a','#222222','#141414','#f5f5f0','#d8d5c8','#aaa898','#2a2a2a','#b8960c','rgba(13,13,13,0.92)','#1a1200','#4a3800','#ffeea0','#ccb840'),
+  royalPurple:mkC('#9c27b0','#ab47bc','#6a0080','#e040fb','#ffd700','#0a070f','#120b1a','#181020','#20172a','#140e1e','#f5f0ff','#d8c8e8','#aa98bb','#2a1a3a','#9c27b0','rgba(14,10,24,0.88)','#4a0060','#7b00a0','#e8c5ff','#c09acc'),
+  deepTeal:   mkC('#00897b','#26a69a','#004d40','#80cbc4','#ffd700','#070f0e','#0b1a19','#101f1e','#162b29','#0e1e1d','#f0fffe','#c8e8e6','#88bcba','#1a3230','#00897b','rgba(10,20,19,0.88)','#00352d','#006358','#b5e0dc','#80c0bc'),
+  burntOrange:mkC('#e65100','#ff6d00','#bf360c','#ffab40','#ffd700','#0f0903','#1a1005','#200f06','#2b1908','#1a1006','#fff8f0','#f0d8b8','#cc9860','#3a1a04','#e65100','rgba(20,12,4,0.88)','#3a1500','#7a3200','#ffc89a','#cc9060'),
+  roseGoldDk: mkC('#ad1457','#e91e63','#880e4f','#f48fb1','#ffc0cb','#0f0709','#1a0c12','#20111a','#2b1520','#1a0e16','#fff0f5','#e8c8d8','#bb8898','#3a1025','#ad1457','rgba(20,10,16,0.88)','#4a0028','#880048','#ffc0d8','#cc90a8'),
+  slateNight: mkC('#37474f','#546e7a','#102027','#80cbc4','#b0bec5','#070a0b','#0c1214','#111a1e','#172228','#0e181c','#ecf0f3','#c8d4d8','#88a0a8','#1a2a30','#37474f','rgba(10,15,17,0.88)','#1a2c34','#2e4a54','#c5d8e0','#90aabc'),
+
+  // ═══ LIGHT THEMES ═══
+  creamGreen: mkC('#2e8b57','#3cb371','#1a5c38','#20b2aa','#b8860b','#f5f0e8','#ede8dc','#e4ddce','#d9d0be','#ffffffee','#0f0a04','#2a1e0e','#4a3a20','#c8bda0','#2e8b5744','rgba(245,240,232,0.92)','#2e8b57','#1a5c38','#f0fff8','#c0e8d0',null,'#ffffff','rgba(245,240,232,0.2)','#d9d0be','#4a3a20','#b8860b','#d4edda','#155724','#f8d7da','#721c24','#b8860b'),
+  skyBlue:    mkC('#1565c0','#1976d2','#0d47a1','#26c6da','#f9a825','#f0f4ff','#e3eeff','#d6e4ff','#c8d8ff','#ffffffee','#050e24','#1a2a50','#3a5080','#b0c0e8','#1565c044','rgba(240,244,255,0.92)','#0d47a1','#1565c0','#e8f0ff','#b8ccf0',null,'#ffffff','rgba(240,244,255,0.15)','#c8d8ff','#3a5080','#1565c0','#d4edda','#155724','#f8d7da','#721c24','#f9a825'),
+  roseLight:  mkC('#c62828','#e53935','#b71c1c','#e91e63','#c62828','#fff5f5','#ffe8e8','#ffdada','#ffcccc','#ffffffee','#1a0505','#400a0a','#702020','#f0b8b8','#c6282844','rgba(255,245,245,0.92)','#c62828','#b71c1c','#fff0f0','#f8c8c8',null,'#ffffff','rgba(255,245,245,0.15)','#ffcccc','#702020','#c62828','#d4edda','#155724','#f8d7da','#721c24','#c62828'),
+  warmBronze: mkC('#6a1e00','#8d3800','#4a1200','#d2691e','#b8860b','#fdf3e7','#f5e6d0','#edd8b8','#e4caa0','#ffffffee','#1a0800','#3a1800','#6a3800','#d4b898','#6a1e0044','rgba(253,243,231,0.92)','#6a1e00','#4a1200','#fff8f0','#e8d0a8',null,'#ffffff','rgba(253,243,231,0.15)','#e4caa0','#6a3800','#b8860b','#d4edda','#155724','#f8d7da','#721c24','#b8860b'),
+  ivoryGold:  mkC('#b8860b','#d4af37','#7a5e00','#c0a000','#b8860b','#fffff0','#fffde0','#fffac8','#fff7b0','#ffffffee','#1a1400','#3a2e00','#6a5800','#e0d090','#b8860b44','rgba(255,255,240,0.94)','#b8860b','#7a5e00','#fffce8','#f0e090',null,'#ffffff','rgba(255,255,240,0.1)','#fff7b0','#6a5800','#b8860b','#d4edda','#155724','#f8d7da','#721c24','#b8860b'),
+  lavender:   mkC('#6a1b9a','#7b1fa2','#4a0072','#ce93d8','#9c27b0','#faf0ff','#f3e0ff','#ebd0ff','#e0c0ff','#ffffffee','#1a0030','#3a0060','#6a40a0','#d0a8e8','#6a1b9a44','rgba(250,240,255,0.92)','#6a1b9a','#4a0072','#f8f0ff','#d8b8f0',null,'#ffffff','rgba(250,240,255,0.15)','#e0c0ff','#6a40a0','#9c27b0','#d4edda','#155724','#f8d7da','#721c24','#9c27b0'),
+  mintFresh:  mkC('#00695c','#00897b','#004d40','#26a69a','#00897b','#f0fffe','#e0f8f5','#d0f0ec','#c0e8e4','#ffffffee','#002820','#004a40','#007060','#a0d8d4','#00695c44','rgba(240,255,254,0.92)','#00695c','#004d40','#e8fffe','#b0e8e4',null,'#ffffff','rgba(240,255,254,0.1)','#c0e8e4','#007060','#00897b','#d4edda','#155724','#f8d7da','#721c24','#00897b'),
+  terracotta: mkC('#bf360c','#d84315','#8d2400','#ff7043','#bf360c','#fff8f5','#ffe8e0','#ffd8c8','#ffc8b0','#ffffffee','#200800','#440e00','#7a2800','#f0b898','#bf360c44','rgba(255,248,245,0.92)','#bf360c','#8d2400','#fff5f0','#f8d0b0',null,'#ffffff','rgba(255,248,245,0.15)','#ffc8b0','#7a2800','#bf360c','#d4edda','#155724','#f8d7da','#721c24','#bf360c'),
+  blossomPink:mkC('#880e4f','#ad1457','#560027','#f06292','#e91e63','#fff0f5','#ffe0ec','#ffd0e0','#ffbfd4','#ffffffee','#1a0010','#400030','#800060','#f0a8c8','#880e4f44','rgba(255,240,245,0.92)','#880e4f','#560027','#fff0f8','#f8c0d8',null,'#ffffff','rgba(255,240,245,0.15)','#ffbfd4','#800060','#e91e63','#d4edda','#155724','#f8d7da','#721c24','#e91e63'),
+  pureNature: mkC('#33691e','#558b2f','#1b5e20','#7cb342','#33691e','#f4fbf0','#e4f5e0','#d4eed0','#c4e4bc','#ffffffee','#0a1e04','#1e4010','#3a6820','#a8d898','#33691e44','rgba(244,251,240,0.92)','#33691e','#1b5e20','#f0ffe8','#c0e8a8',null,'#ffffff','rgba(244,251,240,0.1)','#c4e4bc','#3a6820','#33691e','#d4edda','#155724','#f8d7da','#721c24','#33691e')
 };
 
-window.applyPreset = function(name){
+const ALL_VAR_MAP = {
+  p:'--p',pl:'--pl',pd:'--pd',sec:'--sec',gold:'--gold',
+  bg:'--bg',bg2:'--bg2',bg3:'--bg3',bg4:'--bg4',card:'--card',
+  txt:'--txt',txt2:'--txt2',txt3:'--txt3',
+  bdr:'--bdr',bdr2:'--bdr2',glass:'--glass',
+  ratebarBg:'--ratebar-bg',ratebarBorder:'--ratebar-border',
+  ratebarText:'--ratebar-text',ratebarLabel:'--ratebar-label',
+  navBg:'--nav-bg',navBorder:'--nav-border',btnText:'--btn-text',
+  heroOverlay:'--hero-overlay',footerBg:'--footer-bg',footerText:'--footer-text',
+  cursorColor:'--cursor-color',shadowColor:'--shadow-color',sparkle:'--sparkle',
+  upBg:'--up-bg',upText:'--up-text',dnBg:'--dn-bg',dnText:'--dn-text'
+};
+
+window.applyPreset = function(name, themeMode){
   const preset = COLOR_PRESETS[name];
-  if(!preset) return;
-  const varMap = {
-    p:'--p',pl:'--pl',pd:'--pd',sec:'--sec',gold:'--gold',
-    bg:'--bg',bg2:'--bg2',bg3:'--bg3',bg4:'--bg4',
-    card:'--card',txt:'--txt',txt2:'--txt2',txt3:'--txt3',
-    bdr:'--bdr',bdr2:'--bdr2',glass:'--glass',
-    ratebarBg:'--ratebar-bg',ratebarBorder:'--ratebar-border',
-    ratebarText:'--ratebar-text',ratebarLabel:'--ratebar-label'
-  };
+  if(!preset){ toast('Preset not found: '+name,'err'); return; }
   const r = document.documentElement;
-  Object.entries(preset).forEach(([k,v])=>{
-    if(varMap[k]) r.style.setProperty(varMap[k], v);
-    const el = document.getElementById('AC_'+k);
-    if(el) el.value = v.startsWith('#') ? v.slice(0,7) : v;
+  // Set data-theme if mode specified
+  if(themeMode){
+    r.setAttribute('data-theme', themeMode);
+    // Remove all overrides first so CSS vars from [data-theme] take effect
+    Object.values(ALL_VAR_MAP).forEach(v => r.style.removeProperty(v));
+  }
+  // Apply preset colors as inline overrides
+  Object.entries(ALL_VAR_MAP).forEach(([k,v])=>{
+    if(preset[k]) r.style.setProperty(v, preset[k]);
   });
   // Apply ratebar
   const rb = document.getElementById('RATEBAR');
@@ -2285,12 +2472,26 @@ window.applyPreset = function(name){
     if(preset.ratebarBg) rb.style.background = preset.ratebarBg;
     if(preset.ratebarBorder) rb.style.borderBottomColor = preset.ratebarBorder;
   }
-  toast('Preset applied — click Save to keep it!','ok');
+  // Update all color pickers
+  populateColorPickers(themeMode || r.getAttribute('data-theme'));
+  toast('✨ Preset applied! Click Save to keep it.','ok');
 };
 
 window.resetColors = function(){
-  window.applyPreset('dark');
-  toast('Colors reset to default','ok');
+  const theme = document.documentElement.getAttribute('data-theme') || 'dark';
+  window.applyPreset('darkGreen', 'dark');
+  toast('Colors reset to default dark theme','ok');
+};
+
+window.switchPresetTab = function(mode){
+  document.getElementById('PRESETS_dark').style.display = mode==='dark'?'grid':'none';
+  document.getElementById('PRESETS_light').style.display = mode==='light'?'grid':'none';
+  document.getElementById('PTAB_dark').classList.toggle('act', mode==='dark');
+  document.getElementById('PTAB_light').classList.toggle('act', mode==='light');
+  document.getElementById('PTAB_dark').style.background = mode==='dark'?'var(--p)':'var(--bg3)';
+  document.getElementById('PTAB_dark').style.color = mode==='dark'?'#fff':'var(--txt3)';
+  document.getElementById('PTAB_light').style.background = mode==='light'?'var(--p)':'var(--bg3)';
+  document.getElementById('PTAB_light').style.color = mode==='light'?'#fff':'var(--txt3)';
 };
 
 window.saveAll = async function(){
