@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Varnika Jewellers – Craftings Dreams into Gold</title>
+<title>Varnika Jewellers – Crafting Dreams into Gold</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://i.postimg.cc" crossorigin>
@@ -66,18 +66,24 @@ select option{background:var(--bg2)}
 .ld-fill{height:100%;width:0;background:linear-gradient(90deg,var(--p),var(--gold));border-radius:2px;transition:width .08s}
 @keyframes glow{0%,100%{box-shadow:0 0 20px #ffd70055}50%{box-shadow:0 0 60px #ffd700cc}}
 
-/* ═══ RATE BAR — MAROON ═══ */
-#RATEBAR{position:fixed;top:0;left:0;width:100%;z-index:1000;height:34px;background:#5c0a1a;border-bottom:2px solid #8b1a2e;overflow:hidden;display:flex;align-items:center;box-shadow:0 2px 12px rgba(92,10,26,.8)}
+/* ═══ RATE BAR ═══ */
+:root{
+  --ratebar-bg:#5c0a1a;
+  --ratebar-border:#8b1a2e;
+  --ratebar-text:#e8c5cc;
+  --ratebar-label:#c9a0aa;
+}
+#RATEBAR{position:fixed;top:0;left:0;width:100%;z-index:1000;height:34px;background:var(--ratebar-bg);border-bottom:2px solid var(--ratebar-border);overflow:hidden;display:flex;align-items:center;box-shadow:0 2px 12px rgba(0,0,0,.5)}
 .rt{display:flex;align-items:center;white-space:nowrap;animation:ticker 38s linear infinite}
 .rt:hover{animation-play-state:paused}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ri{display:inline-flex;align-items:center;gap:5px;padding:0 16px;font-size:15px;color:#e8c5cc}
-.ri .lbl{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:#c9a0aa}
+.ri{display:inline-flex;align-items:center;gap:5px;padding:0 16px;font-size:15px;color:var(--ratebar-text)}
+.ri .lbl{font-size:14px;text-transform:uppercase;letter-spacing:.12em;color:var(--ratebar-label)}
 .ri .val{font-family:var(--fh);font-size:13px;font-weight:700;color:var(--gold)}
 .ri .chg{font-size:13px;padding:1px 5px;border-radius:4px}
 .up{background:#0f3320;color:#4cdf8a}
 .dn{background:#3a1010;color:#f07070}
-.rdiv{color:#8b1a2e;padding:0 2px;font-size:14px}
+.rdiv{color:var(--ratebar-border);padding:0 2px;font-size:14px}
 
 /* ═══ NAVBAR ═══ */
 #NAV{position:fixed;top:34px;left:0;width:100%;z-index:999;height:64px;background:var(--glass);backdrop-filter:blur(24px) saturate(1.8);-webkit-backdrop-filter:blur(24px) saturate(1.8);border-bottom:1px solid var(--bdr2);display:flex;align-items:center;padding:0 20px;gap:14px;transition:var(--tr)}
@@ -424,6 +430,16 @@ footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:clamp(30px,
 .toast.out{animation:tOut .3s ease forwards}
 @keyframes tIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 @keyframes tOut{from{opacity:1}to{opacity:0;transform:translateY(10px)}}
+
+/* ═══ COLOR EDITOR ═══ */
+.clr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin-bottom:4px}
+.clr-item{display:flex;flex-direction:column;align-items:center;gap:4px;background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:10px 6px;cursor:pointer;transition:border-color .2s}
+.clr-item:hover{border-color:var(--gold)}
+.clr-inp{width:52px;height:36px;border:none;border-radius:8px;cursor:pointer;background:none;padding:0}
+.clr-inp::-webkit-color-swatch-wrapper{padding:0;border-radius:6px}
+.clr-inp::-webkit-color-swatch{border:none;border-radius:6px}
+.clr-label{font-size:11px;font-weight:600;color:var(--txt2);text-align:center;line-height:1.2}
+.clr-hint{font-size:9px;color:var(--txt3);text-align:center;line-height:1.2}
 
 /* ═══ ADMIN ═══ */
 #ADMIN{position:fixed;inset:0;z-index:3000;background:rgba(0,0,0,.95);backdrop-filter:blur(18px);display:none;overflow-y:auto}
@@ -959,16 +975,150 @@ footer{background:var(--bg2);border-top:1px solid var(--bdr);padding:clamp(30px,
     <!-- SITE TAB -->
     <div class="atp" id="at-site">
       <div class="agrid">
-        <div class="ac">
+        <div class="ac" style="grid-column:1/-1">
           <h3>🎨 Colors &amp; Branding</h3>
-          <div class="ig2">
-            <div class="ig"><label>Primary Color</label><input type="color" id="AC1" value="#2e8b57"></div>
-            <div class="ig"><label>Secondary Color</label><input type="color" id="AC2" value="#20b2aa"></div>
-            <div class="ig"><label>Gold/Accent Color</label><input type="color" id="AC3" value="#ffd700"></div>
+          <div class="ig2" style="margin-bottom:6px">
+            <div class="ig" style="margin-bottom:10px"><label>Site Name</label><input type="text" id="ASNAME"></div>
+            <div class="ig" style="margin-bottom:10px"><label>Tagline</label><input type="text" id="ASTAGLINE"></div>
           </div>
-          <div class="ig" style="margin-bottom:10px"><label>Site Name</label><input type="text" id="ASNAME"></div>
-          <div class="ig" style="margin-bottom:14px"><label>Tagline</label><input type="text" id="ASTAGLINE"></div>
-          <button class="baP" onclick="saveSite()">Apply Colors</button>
+
+          <!-- PRIMARY PALETTE -->
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Brand Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_p" class="clr-inp" oninput="liveColor('--p',this.value)">
+              <div class="clr-label">Primary</div>
+              <div class="clr-hint">(buttons, active tabs)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_pl" class="clr-inp" oninput="liveColor('--pl',this.value)">
+              <div class="clr-label">Primary Light</div>
+              <div class="clr-hint">(hover states)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_pd" class="clr-inp" oninput="liveColor('--pd',this.value)">
+              <div class="clr-label">Primary Dark</div>
+              <div class="clr-hint">(pressed states)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_sec" class="clr-inp" oninput="liveColor('--sec',this.value)">
+              <div class="clr-label">Secondary</div>
+              <div class="clr-hint">(accents, links)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_gold" class="clr-inp" oninput="liveColor('--gold',this.value)">
+              <div class="clr-label">Gold / Accent</div>
+              <div class="clr-hint">(logo, prices, stars)</div>
+            </div>
+          </div>
+
+          <!-- BACKGROUND PALETTE -->
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Background Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_bg" class="clr-inp" oninput="liveColor('--bg',this.value)">
+              <div class="clr-label">Background</div>
+              <div class="clr-hint">(page base)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_bg2" class="clr-inp" oninput="liveColor('--bg2',this.value)">
+              <div class="clr-label">Background 2</div>
+              <div class="clr-hint">(sections)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_bg3" class="clr-inp" oninput="liveColor('--bg3',this.value)">
+              <div class="clr-label">Background 3</div>
+              <div class="clr-hint">(cards, inputs)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_bg4" class="clr-inp" oninput="liveColor('--bg4',this.value)">
+              <div class="clr-label">Background 4</div>
+              <div class="clr-hint">(deep elements)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_card" class="clr-inp" oninput="liveColor('--card',this.value)">
+              <div class="clr-label">Card Color</div>
+              <div class="clr-hint">(product cards)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_glass" class="clr-inp" oninput="liveColor('--glass',this.value)">
+              <div class="clr-label">Glass / Nav</div>
+              <div class="clr-hint">(navbar bg)</div>
+            </div>
+          </div>
+
+          <!-- TEXT PALETTE -->
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Text Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_txt" class="clr-inp" oninput="liveColor('--txt',this.value)">
+              <div class="clr-label">Text Primary</div>
+              <div class="clr-hint">(headings, body)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_txt2" class="clr-inp" oninput="liveColor('--txt2',this.value)">
+              <div class="clr-label">Text Secondary</div>
+              <div class="clr-hint">(descriptions)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_txt3" class="clr-inp" oninput="liveColor('--txt3',this.value)">
+              <div class="clr-label">Text Muted</div>
+              <div class="clr-hint">(labels, hints)</div>
+            </div>
+          </div>
+
+          <!-- BORDER PALETTE -->
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Border Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_bdr" class="clr-inp" oninput="liveColor('--bdr',this.value)">
+              <div class="clr-label">Border</div>
+              <div class="clr-hint">(cards, inputs)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_bdr2" class="clr-inp" oninput="liveColor('--bdr2',this.value)">
+              <div class="clr-label">Border 2</div>
+              <div class="clr-hint">(navbar border)</div>
+            </div>
+          </div>
+
+          <!-- RATE BAR -->
+          <div style="margin:14px 0 6px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Rate Bar Colors</div>
+          <div class="clr-grid">
+            <div class="clr-item">
+              <input type="color" id="AC_ratebarBg" class="clr-inp" oninput="liveRateBar()">
+              <div class="clr-label">Rate Bar BG</div>
+              <div class="clr-hint">(bar background)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_ratebarBorder" class="clr-inp" oninput="liveRateBar()">
+              <div class="clr-label">Rate Bar Border</div>
+              <div class="clr-hint">(bottom border)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_ratebarText" class="clr-inp" oninput="liveRateBar()">
+              <div class="clr-label">Rate Bar Text</div>
+              <div class="clr-hint">(price values)</div>
+            </div>
+            <div class="clr-item">
+              <input type="color" id="AC_ratebarLabel" class="clr-inp" oninput="liveRateBar()">
+              <div class="clr-label">Rate Bar Label</div>
+              <div class="clr-hint">(24K, 22K labels)</div>
+            </div>
+          </div>
+
+          <!-- PRESETS -->
+          <div style="margin:18px 0 8px;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.14em;text-transform:uppercase">✦ Quick Presets</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px">
+            <button class="baP" style="font-size:11px;padding:6px 14px" onclick="applyPreset('dark')">🌑 Dark Green (Default)</button>
+            <button class="baP" style="font-size:11px;padding:6px 14px;background:#1a237e" onclick="applyPreset('royal')">💙 Royal Blue</button>
+            <button class="baP" style="font-size:11px;padding:6px 14px;background:#4a0000" onclick="applyPreset('maroon')">❤️ Deep Maroon</button>
+            <button class="baP" style="font-size:11px;padding:6px 14px;background:#3e2723" onclick="applyPreset('bronze')">🟤 Bronze Dark</button>
+            <button class="baP" style="font-size:11px;padding:6px 14px;background:#1b1b1b;color:#ffd700" onclick="applyPreset('luxury')">✨ Black Gold</button>
+          </div>
+
+          <button class="baP" onclick="saveSite()" style="padding:12px 28px;font-size:13px">💾 Save All Colors &amp; Settings</button>
+          <button class="baP" style="background:var(--bg3);color:var(--txt3);margin-left:8px;padding:12px 20px;font-size:13px" onclick="resetColors()">↩ Reset to Default</button>
         </div>
         <div class="ac">
           <h3>📞 Contact Details</h3>
@@ -1104,9 +1254,31 @@ function applySettings(s){
   if(!s) return;
   S.settings = s;
   const r = document.documentElement;
+  // Legacy 3-color fields
   if(s.primaryColor) r.style.setProperty('--p', s.primaryColor);
   if(s.secondaryColor) r.style.setProperty('--sec', s.secondaryColor);
   if(s.accentColor) r.style.setProperty('--gold', s.accentColor);
+  // Full color palette
+  if(s.colors){
+    const c = s.colors;
+    const varMap = {
+      p:'--p',pl:'--pl',pd:'--pd',sec:'--sec',gold:'--gold',
+      bg:'--bg',bg2:'--bg2',bg3:'--bg3',bg4:'--bg4',
+      card:'--card',txt:'--txt',txt2:'--txt2',txt3:'--txt3',
+      bdr:'--bdr',bdr2:'--bdr2',glass:'--glass',
+      ratebarBg:'--ratebar-bg',ratebarBorder:'--ratebar-border',
+      ratebarText:'--ratebar-text',ratebarLabel:'--ratebar-label'
+    };
+    Object.entries(varMap).forEach(([k,v])=>{
+      if(c[k]) r.style.setProperty(v, c[k]);
+    });
+    // Apply ratebar inline too (overrides any inline styles)
+    const rb = document.getElementById('RATEBAR');
+    if(rb){
+      if(c.ratebarBg) rb.style.background = c.ratebarBg;
+      if(c.ratebarBorder) rb.style.borderBottomColor = c.ratebarBorder;
+    }
+  }
   if(s.heroImages && s.heroImages.length) S.heroImages = s.heroImages;
   if(s.galleryImages && s.galleryImages.length) S.galleryImages = s.galleryImages;
   if(s.offerImages) S.offerImages = s.offerImages;
@@ -1743,7 +1915,56 @@ function populateAdmin(){
   document.getElementById('ASTAGLINE').value=S.settings?.tagline||'';
   const creds=S.settings?.adminCredentials||{};
   document.getElementById('ANEWU').value=creds.username||'admin';
+  // Populate color inputs — prefer saved colors, fallback to computed CSS vars
+  const saved = S.settings?.colors || {};
+  const cs = getComputedStyle(document.documentElement);
+  const getC = (key, cssVar, fallback) => {
+    if(saved[key]) return saved[key];
+    const cv = cs.getPropertyValue(cssVar).trim();
+    return cv || fallback;
+  };
+  const colorMap = [
+    ['p','--p','#2e8b57'],['pl','--pl','#3cb371'],['pd','--pd','#1a5c38'],
+    ['sec','--sec','#20b2aa'],['gold','--gold','#ffd700'],
+    ['bg','--bg','#070f0b'],['bg2','--bg2','#0c1a11'],
+    ['bg3','--bg3','#111f16'],['bg4','--bg4','#172b1e'],
+    ['card','--card','#0e1e14'],
+    ['txt','--txt','#f5f2ec'],['txt2','--txt2','#d8d0b8'],['txt3','--txt3','#aabcaa'],
+    ['bdr','--bdr','#1e3528'],['bdr2','--bdr2','#2e8b5755'],
+    ['glass','--glass','#0b1810'],
+    ['ratebarBg','--ratebar-bg','#5c0a1a'],
+    ['ratebarBorder','--ratebar-border','#8b1a2e'],
+    ['ratebarText','--ratebar-text','#e8c5cc'],
+    ['ratebarLabel','--ratebar-label','#c9a0aa']
+  ];
+  colorMap.forEach(([k, cssVar, fallback])=>{
+    const el = document.getElementById('AC_'+k);
+    if(el){
+      let val = getC(k, cssVar, fallback);
+      // Convert rgba/named to hex for color input
+      val = toHex(val) || fallback;
+      el.value = val;
+    }
+  });
   renderAdminProducts(); renderAdminOffers(); renderAdminHeroImgs(); renderAdminGalImgs(); renderAdminOfferImgs();
+}
+
+// Helper: convert any css color to #rrggbb for <input type="color">
+function toHex(color){
+  if(!color) return null;
+  color = color.trim();
+  if(/^#[0-9a-f]{6}$/i.test(color)) return color;
+  if(/^#[0-9a-f]{8}$/i.test(color)) return color.slice(0,7);
+  if(/^#[0-9a-f]{3}$/i.test(color)){
+    const [,r,g,b] = color.match(/^#(.)(.)(.)$/);
+    return '#'+r+r+g+g+b+b;
+  }
+  // rgba(r,g,b,a) or rgb(r,g,b)
+  const m = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if(m){
+    return '#' + [m[1],m[2],m[3]].map(x=>parseInt(x).toString(16).padStart(2,'0')).join('');
+  }
+  return null;
 }
 
 /* ── AUTO CALC RATES ── */
@@ -1782,13 +2003,46 @@ window.updateRates = async function(){
 
 /* ── SAVE SITE ── */
 window.saveSite = async function(){
-  const p=document.getElementById('AC1').value, s=document.getElementById('AC2').value, a=document.getElementById('AC3').value;
-  document.documentElement.style.setProperty('--p',p);
-  document.documentElement.style.setProperty('--sec',s);
-  document.documentElement.style.setProperty('--gold',a);
-  const ns={...S.settings,primaryColor:p,secondaryColor:s,accentColor:a,siteName:document.getElementById('ASNAME').value,tagline:document.getElementById('ASTAGLINE').value,heroImages:S.heroImages,galleryImages:S.galleryImages,offerImages:S.offerImages,contact:S.settings.contact||{},adminCredentials:S.settings.adminCredentials||{username:'admin',password:'varnika@2024'},liveRates:{gold24k:S.rates.gold24k,gold22k:S.rates.gold22k,gold18k:S.rates.gold18k,silver:S.rates.silver}};
+  // Collect all color inputs
+  const colorKeys = ['p','pl','pd','sec','gold','bg','bg2','bg3','bg4',
+                     'card','txt','txt2','txt3','bdr','bdr2','glass',
+                     'ratebarBg','ratebarBorder','ratebarText','ratebarLabel'];
+  const colors = {};
+  colorKeys.forEach(k => {
+    const el = document.getElementById('AC_'+k);
+    if(el) colors[k] = el.value;
+  });
+  // Apply immediately to page
+  const varMap = {
+    p:'--p', pl:'--pl', pd:'--pd', sec:'--sec', gold:'--gold',
+    bg:'--bg', bg2:'--bg2', bg3:'--bg3', bg4:'--bg4',
+    card:'--card', txt:'--txt', txt2:'--txt2', txt3:'--txt3',
+    bdr:'--bdr', bdr2:'--bdr2', glass:'--glass',
+    ratebarBg:'--ratebar-bg', ratebarBorder:'--ratebar-border',
+    ratebarText:'--ratebar-text', ratebarLabel:'--ratebar-label'
+  };
+  Object.entries(colors).forEach(([k,v])=>{
+    if(varMap[k]) document.documentElement.style.setProperty(varMap[k], v);
+  });
+  // Also apply ratebar inline styles
+  const rb = document.getElementById('RATEBAR');
+  if(rb && colors.ratebarBg){
+    rb.style.background = colors.ratebarBg;
+    rb.style.borderBottomColor = colors.ratebarBorder||'';
+  }
+  // Legacy fields for backward compat
+  const ns={...S.settings,
+    primaryColor:colors.p, secondaryColor:colors.sec, accentColor:colors.gold,
+    colors: colors,
+    siteName:document.getElementById('ASNAME').value,
+    tagline:document.getElementById('ASTAGLINE').value,
+    heroImages:S.heroImages, galleryImages:S.galleryImages, offerImages:S.offerImages,
+    contact:S.settings?.contact||{},
+    adminCredentials:S.settings?.adminCredentials||{username:'admin',password:'varnika@2024'},
+    liveRates:{gold24k:S.rates.gold24k,gold22k:S.rates.gold22k,gold18k:S.rates.gold18k,silver:S.rates.silver}
+  };
   S.settings=ns;
-  try{ await set(ref(db,'settings'),ns); initHero(); toast('✓ Site settings saved!','ok'); }
+  try{ await set(ref(db,'settings'),ns); initHero(); toast('✓ All colors & settings saved!','ok'); }
   catch(err){ toast('Local save OK — Firebase: '+err.message,'err'); }
 };
 
@@ -1949,6 +2203,96 @@ window.ofImgRemove = function(i){ S.offerImages.splice(i,1); renderAdminOfferImg
 window.addOfferImg = function(){ if(!S.offerImages)S.offerImages=[]; S.offerImages.push(''); renderAdminOfferImgs(); };
 
 /* ── SAVE ALL ── */
+/* ── LIVE COLOR PREVIEW ── */
+window.liveColor = function(cssVar, val){
+  document.documentElement.style.setProperty(cssVar, val);
+};
+window.liveRateBar = function(){
+  const bg  = document.getElementById('AC_ratebarBg')?.value;
+  const bdr = document.getElementById('AC_ratebarBorder')?.value;
+  const txt = document.getElementById('AC_ratebarText')?.value;
+  const lbl = document.getElementById('AC_ratebarLabel')?.value;
+  const rb  = document.getElementById('RATEBAR');
+  if(rb){
+    if(bg)  rb.style.background = bg;
+    if(bdr) rb.style.borderBottomColor = bdr;
+  }
+  // Update CSS vars so .ri / .lbl pick them up
+  const r = document.documentElement;
+  if(txt) r.style.setProperty('--ratebar-text', txt);
+  if(lbl) r.style.setProperty('--ratebar-label', lbl);
+};
+
+/* ── COLOR PRESETS ── */
+const COLOR_PRESETS = {
+  dark:{
+    p:'#2e8b57',pl:'#3cb371',pd:'#1a5c38',sec:'#20b2aa',gold:'#ffd700',
+    bg:'#070f0b',bg2:'#0c1a11',bg3:'#111f16',bg4:'#172b1e',
+    card:'#0e1e14',txt:'#f5f2ec',txt2:'#d8d0b8',txt3:'#aabcaa',
+    bdr:'#1e3528',bdr2:'#2e8b57',glass:'#0b1810',
+    ratebarBg:'#5c0a1a',ratebarBorder:'#8b1a2e',ratebarText:'#e8c5cc',ratebarLabel:'#c9a0aa'
+  },
+  royal:{
+    p:'#3949ab',pl:'#5c6bc0',pd:'#1a237e',sec:'#00bcd4',gold:'#ffd700',
+    bg:'#07090f',bg2:'#0c0f1a',bg3:'#111520',bg4:'#171c2b',
+    card:'#0e1120',txt:'#f0f0ff',txt2:'#c8cce8',txt3:'#8890bb',
+    bdr:'#1e2456',bdr2:'#3949ab',glass:'#0b0e1c',
+    ratebarBg:'#1a237e',ratebarBorder:'#3949ab',ratebarText:'#c5ccff',ratebarLabel:'#a0aacc'
+  },
+  maroon:{
+    p:'#8b1a1a',pl:'#b22222',pd:'#4a0000',sec:'#c0392b',gold:'#ffd700',
+    bg:'#0f0707',bg2:'#1a0c0c',bg3:'#200f0f',bg4:'#2b1414',
+    card:'#1a0e0e',txt:'#fff0f0',txt2:'#e8c8c8',txt3:'#bb8888',
+    bdr:'#3a1010',bdr2:'#8b1a1a',glass:'#150808',
+    ratebarBg:'#2d0000',ratebarBorder:'#6b0000',ratebarText:'#ffcccc',ratebarLabel:'#cc9999'
+  },
+  bronze:{
+    p:'#a0522d',pl:'#cd853f',pd:'#6b3621',sec:'#d2691e',gold:'#ffd700',
+    bg:'#0f0a07',bg2:'#1a1108',bg3:'#20160a',bg4:'#2b1e0e',
+    card:'#1a1208',txt:'#fff8f0',txt2:'#e8d8c0',txt3:'#bb9870',
+    bdr:'#3a2010',bdr2:'#a0522d',glass:'#150e06',
+    ratebarBg:'#3e2000',ratebarBorder:'#7a4000',ratebarText:'#ffddb5',ratebarLabel:'#ccaa80'
+  },
+  luxury:{
+    p:'#b8960c',pl:'#d4af37',pd:'#7a6000',sec:'#c0a000',gold:'#ffd700',
+    bg:'#0a0a0a',bg2:'#111111',bg3:'#1a1a1a',bg4:'#222222',
+    card:'#141414',txt:'#f5f5f0',txt2:'#d8d5c8',txt3:'#aaa898',
+    bdr:'#2a2a2a',bdr2:'#b8960c',glass:'#0d0d0d',
+    ratebarBg:'#1a1200',ratebarBorder:'#4a3800',ratebarText:'#ffeea0',ratebarLabel:'#ccb840'
+  }
+};
+
+window.applyPreset = function(name){
+  const preset = COLOR_PRESETS[name];
+  if(!preset) return;
+  const varMap = {
+    p:'--p',pl:'--pl',pd:'--pd',sec:'--sec',gold:'--gold',
+    bg:'--bg',bg2:'--bg2',bg3:'--bg3',bg4:'--bg4',
+    card:'--card',txt:'--txt',txt2:'--txt2',txt3:'--txt3',
+    bdr:'--bdr',bdr2:'--bdr2',glass:'--glass',
+    ratebarBg:'--ratebar-bg',ratebarBorder:'--ratebar-border',
+    ratebarText:'--ratebar-text',ratebarLabel:'--ratebar-label'
+  };
+  const r = document.documentElement;
+  Object.entries(preset).forEach(([k,v])=>{
+    if(varMap[k]) r.style.setProperty(varMap[k], v);
+    const el = document.getElementById('AC_'+k);
+    if(el) el.value = v.startsWith('#') ? v.slice(0,7) : v;
+  });
+  // Apply ratebar
+  const rb = document.getElementById('RATEBAR');
+  if(rb){
+    if(preset.ratebarBg) rb.style.background = preset.ratebarBg;
+    if(preset.ratebarBorder) rb.style.borderBottomColor = preset.ratebarBorder;
+  }
+  toast('Preset applied — click Save to keep it!','ok');
+};
+
+window.resetColors = function(){
+  window.applyPreset('dark');
+  toast('Colors reset to default','ok');
+};
+
 window.saveAll = async function(){
   toast('Saving all changes…','');
   try{
