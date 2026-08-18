@@ -1979,7 +1979,7 @@ window.toggleTheme = function(){
 
 /* ══ STATS COUNTER ══ */
 function animateStats(){
-  const targets=[{id:'SN1',end:10,suf:'+'},{id:'SN2',end:50000,suf:'+'},{id:'SN3',end:1200,suf:'+'},{id:'SN4',end:25,suf:'+'}];
+  const targets=[{id:'SN1',end:10,suf:'+'},{id:'SN2',end:4000,suf:'+'},{id:'SN3',end:1200,suf:'+'},{id:'SN4',end:5,suf:'+'}];
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targets.forEach(t=>{const el=document.getElementById(t.id);if(!el)return;let v=0;const step=Math.ceil(t.end/60);const iv=setInterval(()=>{v=Math.min(v+step,t.end);el.textContent=(v>=1000?Math.round(v/1000)+'K':v)+t.suf;if(v>=t.end)clearInterval(iv);},25);});obs.disconnect();}});},{threshold:.3});
   const el=document.getElementById('STATS');if(el)obs.observe(el);
 }
